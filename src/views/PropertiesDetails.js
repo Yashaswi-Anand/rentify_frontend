@@ -1,14 +1,3 @@
-// import React from 'react'
-// import { useLocation } from 'react-router-dom'
-
-// function PropertiesDetails() {
-//     const location = useLocation()
-//     console.log(location.state);
-//     return (
-//         <div>{location.state.id}</div>
-//     )
-// }
-
 import React, { useEffect, useState } from 'react';
 import { Container, Typography, Card, CardContent, Grid, Box } from '@mui/material';
 import { useLocation } from 'react-router-dom'
