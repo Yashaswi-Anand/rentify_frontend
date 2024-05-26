@@ -1,12 +1,18 @@
 import { CardContent } from '@mui/material'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { FiEdit } from "react-icons/fi";
+import { MdDeleteForever } from "react-icons/md";
+import { FaHeart } from "react-icons/fa";
+import { FaRegHeart } from "react-icons/fa6";
 
 function CardContentItem({ item }) {
     const navigate = useNavigate()
+    const user_role = localStorage.getItem('user_role');
+
     const onHandleShowDetails = () => {
         navigate('/property_details', {
-            state: item 
+            state: item
         });
     }
 
@@ -29,7 +35,17 @@ function CardContentItem({ item }) {
                             <p className='p-0 m-0'>vcbv</p>
                             <p className='p-0 m-0'>Ritesh</p>
                         </div>
-                        <p className='p-0 m-0'> vbvbcc</p>
+                        <p className='p-0 m-0'>
+                            {user_role !== 'seller' ?
+                                <div>
+                                    <FiEdit className='cursor' size={20} />
+                                    <MdDeleteForever className='cursor' size={20} />
+                                </div>
+                                : <div>
+                                    <FaHeart className='cursor' size={20} />
+                                    <FaRegHeart className='cursor' size={20} />
+                                </div>}
+                        </p>
                     </div>
                 </div>
             </CardContent>

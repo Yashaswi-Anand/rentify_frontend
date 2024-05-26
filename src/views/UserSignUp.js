@@ -1,6 +1,7 @@
 import { Box, Button, IconButton, MenuItem, Modal, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
+import { userRegister } from '../utils/api';
 
 const style = {
   position: 'absolute',
@@ -35,10 +36,29 @@ function UserSignUp({ openModal, setOpenModal }) {
     setFormValues({ ...formValues, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formValues);
-    clear()
+    const payload = {
+      first_name: formValues.firstName,
+      last_name: formValues.lastName,
+      email: formValues.email,
+      phone: formValues.phoneNo,
+      role: formValues.role,
+      password: formValues.password
+    }
+    try {
+      const response = await userRegister(payload);
+      if (response.status === 200) {
+        const response = await userRegister(payload);
+        if (response.status === 200) {
+
+        }
+        handleClose();
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const clear = () => {
@@ -137,8 +157,8 @@ function UserSignUp({ openModal, setOpenModal }) {
               variant="outlined"
               required
             >
-              <MenuItem value="Seller">Seller</MenuItem>
-              <MenuItem value="Buyer">Buyer</MenuItem>
+              <MenuItem value="seller">Seller</MenuItem>
+              <MenuItem value="buyer">Buyer</MenuItem>
             </TextField>
             <Button
               variant="contained"

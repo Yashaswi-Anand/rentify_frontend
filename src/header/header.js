@@ -3,12 +3,14 @@ import UserSignIn from '../views/UserSignIn';
 import UserSignUp from '../views/UserSignUp';
 import { Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import AddNewProperties from '../views/AddNewProperties';
 
 const Header = () => {
   const [is_signed_in, setSignedIn] = useState(false);
   const [is_sign_up, setSignUp] = useState(false);
   const user_role = localStorage.getItem('user_role');
   const [is_tab_change, setIsTabChange] = useState(false);
+  const [is_open_new_proprty, setOpenNewProperty] = useState(false);
   const navigate = useNavigate()
 
   const onHandleFavorites = () => {
@@ -34,6 +36,11 @@ const Header = () => {
           openModal={is_sign_up}
           setOpenModal={setSignUp}
         />
+
+        <AddNewProperties
+          openModal={is_open_new_proprty}
+          setOpenModal={setOpenNewProperty}
+        />
       </Box>
 
       <header className="header">
@@ -43,12 +50,12 @@ const Header = () => {
         <div className="right">
           {user_role === "seller" ?
             <div>
-              <button className="auth-button" onClick={() => setSignUp(true)}>Add New Property</button>
+              <button className="auth-button" onClick={() => setOpenNewProperty(true)}>Add New Property</button>
               <button className="auth-button" onClick={() => setSignedIn(true)}>Seller</button>
             </div>
             : user_role === "buyer" ?
               <div>
-                <button className="auth-button" onClick={is_tab_change ? onHandleBack :onHandleFavorites}>{is_tab_change ? 'Home' : 'Favorites'}</button>
+                <button className="auth-button" onClick={is_tab_change ? onHandleBack : onHandleFavorites}>{is_tab_change ? 'Home' : 'Favorites'}</button>
                 <button className="auth-button" onClick={() => setSignedIn(true)}>Buyer</button>
               </div> :
               <div>

@@ -1,6 +1,7 @@
 import { Box, Button, IconButton, Modal, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
+import { userLogin } from '../utils/api';
 
 const style = {
   position: 'absolute',
@@ -19,12 +20,21 @@ function UserSignIn({ openModal, setOpenModal }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const onHandleLogin = (e) => {
+  const onHandleLogin = async (e) => {
     e.preventDefault();
-    console.log('Email:', email);
-    console.log('Password:', password);
-    localStorage.setItem('user_role', "buyer");
-    clear();
+    const payload = {
+      email: email,
+      password: password
+    }
+    try {
+      const user_response = await userLogin(payload);
+      if (user_response?.status === 200) {
+        localStorage.setItem('user_role', user_response.data.data.role);
+      }
+      handleClose()
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleClose = () => {
