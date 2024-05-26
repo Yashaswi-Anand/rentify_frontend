@@ -1,28 +1,35 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Grid, Card, Typography, MenuItem, Select, FormControl, InputLabel } from '@mui/material';
+import { Box, Grid, Card, Typography} from '@mui/material';
 import CardContentItem from '../widget/CardContentItem';
 import { getAllProperties } from '../utils/api';
+import FilterComponent from './FilterComponent';
 
 const Home = () => {
-    const [filter, setFilter] = useState('');
     const [properties, setProperties] = useState([]);
-
-    const handleFilterChange = (event) => {
-        setFilter(event.target.value);
-    };
+    const [filterValues, setFilterValues] = useState({});
 
     useEffect(() => {
         (async () => {
-            try {
-                const response = await getAllProperties();
-                if (response.status === 200) {
-                    setProperties(response.data.data);
-                }
-            } catch (error) {
-                console.error(error);
-            }
+            await getAllPropertiesData()
         })()
     }, [])
+
+    useEffect(() => {
+        (async () => {
+            await getAllPropertiesData();
+        })()
+    }, [filterValues])
+
+    const getAllPropertiesData = async () => {
+        try {
+            const response = await getAllProperties(filterValues);
+            if (response.status === 200) {
+                setProperties(response.data.data);
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
 
     return (
@@ -33,20 +40,7 @@ const Home = () => {
                     paddingRight: 2,
                     height: '100vh',
                 }}>
-                    <FormControl fullWidth>
-                        <InputLabel id="filter-label">Filter</InputLabel>
-                        <Select
-                            labelId="filter-label"
-                            value={filter}
-                            label="Filter"
-                            onChange={handleFilterChange}
-                        >
-                            <MenuItem value="">None</MenuItem>
-                            <MenuItem value="option1">Option 1</MenuItem>
-                            <MenuItem value="option2">Option 2</MenuItem>
-                            {/* Add more filter options as needed */}
-                        </Select>
-                    </FormControl>
+                    <FilterComponent setFilterValues={setFilterValues}/>
                 </Grid>
                 <Grid item xs={12} md={9}>
                     <Typography variant="h5" sx={{ mb: 2 }} component="div">

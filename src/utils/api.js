@@ -34,14 +34,16 @@ export const userLogin = async (payload) => {
     }
 }
 
-export const getAllProperties = async () => {
+export const getAllProperties = async (query_data) => {
+    console.log(query_data);
     try {
         const response = await axios({
             headers: {
                 "Content-Type": "application/json",
             },
-            method: 'GET',
+            method: 'POST',
             url: `${url}/properties/get_properties`,
+            data: query_data
         })
         return response
     } catch (error) {
@@ -55,9 +57,9 @@ export const addNewProperties = async (payload) => {
             headers: {
                 "Content-Type": "application/json",
             },
-            method: 'Post',
+            method: 'POST',
             url: `${url}/properties/add_properties`,
-            data: payload
+            params: payload
         })
         return response
     } catch (error) {

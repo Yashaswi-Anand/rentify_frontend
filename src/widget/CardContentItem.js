@@ -10,7 +10,6 @@ function CardContentItem({ item }) {
     const navigate = useNavigate()
     const user_role = localStorage.getItem('user_role');
 
-    console.log(item);
     const onHandleShowDetails = () => {
         navigate('/property_details', {
             state: item
