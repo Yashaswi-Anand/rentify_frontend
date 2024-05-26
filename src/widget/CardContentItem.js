@@ -10,10 +10,15 @@ function CardContentItem({ item }) {
     const navigate = useNavigate()
     const user_role = localStorage.getItem('user_role');
 
+    console.log(item);
     const onHandleShowDetails = () => {
         navigate('/property_details', {
             state: item
         });
+    }
+
+    const onHandleCaptizedText = (text) => {
+        return text.charAt(0).toUpperCase() + text.slice(1);
     }
 
     return (
@@ -25,23 +30,24 @@ function CardContentItem({ item }) {
                             <img src='https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500' height={100} width={120} style={{ borderRadius: 10 }} />
                         </div>
                         <div className='p-l-10'>
-                            <p className='p-0 m-0'>{item.title}</p>
-                            <p className='p-0 m-0'>State</p>
-                            <p className='p-0 m-0'>State</p>
+                            <p className='p-0 m-0'>Apartment: {onHandleCaptizedText(item.apartment)}</p>
+                            <p className='p-0 m-0'>No Of Bedroom: {item.no_of_bedroom}</p>
+                            <p className='p-0 m-0'>Price: {item.price}</p>
+                            <p className='p-0 m-0'>{item.description}</p>
                         </div>
                     </div>
                     <div className='d-flex justify-between flex-direction-column'>
                         <div>
-                            <p className='p-0 m-0'>vcbv</p>
-                            <p className='p-0 m-0'>Ritesh</p>
+                            <p className='p-0 m-0'>{onHandleCaptizedText(item.state)}, {onHandleCaptizedText(item.region)}</p>
+                            <p className='p-0 m-0'>{onHandleCaptizedText(item.nearby)}</p>
                         </div>
                         <p className='p-0 m-0'>
-                            {user_role !== 'seller' ?
-                                <div>
-                                    <FiEdit className='cursor' size={20} />
-                                    <MdDeleteForever className='cursor' size={20} />
+                            {user_role === 'seller' ?
+                                <div className='d-flex justify-end g-3'>
+                                    <FiEdit className='cursor' size={20} color='darkblue'/>
+                                    <MdDeleteForever className='cursor' size={25} color='darkblue'/>
                                 </div>
-                                : <div>
+                                : <div className='d-flex justify-end g-3'>
                                     <FaHeart className='cursor' size={20} />
                                     <FaRegHeart className='cursor' size={20} />
                                 </div>}

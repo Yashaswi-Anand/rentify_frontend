@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Grid, Card, Typography, MenuItem, Select, FormControl, InputLabel } from '@mui/material';
 import CardContentItem from '../widget/CardContentItem';
+import { getAllProperties } from '../utils/api';
 
 const items = [
     { id: 1, title: 'Card 1', description: 'This is card number 1' },
@@ -44,10 +45,25 @@ const items = [
 
 const Home = () => {
     const [filter, setFilter] = useState('');
+    const [properties, setProperties] = useState([]);
 
     const handleFilterChange = (event) => {
         setFilter(event.target.value);
     };
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const response = await getAllProperties();
+                if (response.status === 200) {
+                    setProperties(response.data.data);
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        })()
+    }, [])
+
 
     return (
         <Box sx={{ flexGrow: 1, p: 3 }}>
@@ -76,13 +92,13 @@ const Home = () => {
                     <Typography variant="h5" sx={{ mb: 2 }} component="div">
                         India's first Quick Rent Search
                     </Typography>
-                    <Grid container spacing={3} sx={{marginTop: 2, paddingRight: 5, maxHeight: 650, overflow: 'auto' }}>
-                        {items.map((item) => (
+                    <Grid container spacing={3} sx={{ marginTop: 2, paddingRight: 5, maxHeight: 650, overflow: 'auto' }}>
+                        {properties && properties?.map((item) => (
                             <Grid item xs={12} sm={6} key={item.id}>
                                 <Card sx={{
                                     background: 'linear-gradient(to top left, #33ccff 0%, white 50%)'
                                 }}>
-                                    <CardContentItem item={item}/>
+                                    <CardContentItem item={item} />
                                 </Card>
                             </Grid>
                         ))}

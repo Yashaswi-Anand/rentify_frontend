@@ -33,3 +33,37 @@ export const userLogin = async (payload) => {
         console.error(error);
     }
 }
+
+export const getAllProperties = async () => {
+    try {
+        const response = await axios({
+            headers: {
+                "Content-Type": "application/json",
+            },
+            method: 'GET',
+            url: `${url}/properties/get_properties`,
+        })
+        return response
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const addNewProperties = async (payload) => {
+    try {
+        const response = await axios({
+            headers: {
+                "Content-Type": "application/json",
+            },
+            method: 'Post',
+            url: `${url}/properties/add_properties`,
+            data: payload
+        })
+        return response
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
+

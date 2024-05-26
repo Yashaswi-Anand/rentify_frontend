@@ -30,6 +30,7 @@ function UserSignIn({ openModal, setOpenModal }) {
       const user_response = await userLogin(payload);
       if (user_response?.status === 200) {
         localStorage.setItem('user_role', user_response.data.data.role);
+        localStorage.setItem('user_id', user_response.data.data.id);
       }
       handleClose()
     } catch (error) {

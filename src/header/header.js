@@ -23,6 +23,11 @@ const Header = () => {
     setIsTabChange(false)
   }
 
+  const onHandleLogout = () => {
+    localStorage.clear();
+    window.location.reload();
+  }
+
   return (
     <div>
 
@@ -51,17 +56,18 @@ const Header = () => {
           {user_role === "seller" ?
             <div>
               <button className="auth-button" onClick={() => setOpenNewProperty(true)}>Add New Property</button>
-              <button className="auth-button" onClick={() => setSignedIn(true)}>Seller</button>
+              <button className='user-identity'>Seller</button>
             </div>
             : user_role === "buyer" ?
               <div>
                 <button className="auth-button" onClick={is_tab_change ? onHandleBack : onHandleFavorites}>{is_tab_change ? 'Home' : 'Favorites'}</button>
-                <button className="auth-button" onClick={() => setSignedIn(true)}>Buyer</button>
+                <button className='user-identity'>Buyer</button>
               </div> :
               <div>
                 <button className="auth-button" onClick={() => setSignUp(true)}>Sign Up</button>
                 <button className="auth-button" onClick={() => setSignedIn(true)}>Sign In</button>
               </div>}
+          {user_role && <button className="auth-button" onClick={() => onHandleLogout()}>LogOut</button>}
           <img className="user-profile-image" src="https://img.favpng.com/2/24/0/computer-icons-avatar-user-profile-png-favpng-HPjiNes3x112h0jw38sbfpDY9.jpg" alt="User Profile" />
         </div>
       </header>

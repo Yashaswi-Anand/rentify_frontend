@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Button, MenuItem, Modal, TextField, Typography, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import { addNewProperties } from '../utils/api';
 
 const style = {
   position: 'absolute',
@@ -20,9 +21,10 @@ function AddNewProperties({ openModal, setOpenModal }) {
     state: '',
     region: '',
     apartmentType: '',
-    likes: '',
     nearby: '',
     price: '',
+    no_of_bedroom: '',
+    description: '',
   });
 
   const handleClose = () => setOpenModal(false);
@@ -32,9 +34,27 @@ function AddNewProperties({ openModal, setOpenModal }) {
     setFormValues({ ...formValues, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formValues);
+    try {
+      const payload = {
+        state: formValues.state,
+        region: formValues.region,
+        nearby: formValues.nearby,
+        apartment: formValues.apartmentType,
+        no_of_bedroom: formValues.no_of_bedroom,
+        price: formValues.price,
+        description: formValues.description,
+        seller_id: localStorage.getItem('user_id'),
+      }
+      const response = await addNewProperties(payload)
+      if (response.status === 200) {
+        handleClose();
+        window.location.reload();
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -70,9 +90,10 @@ function AddNewProperties({ openModal, setOpenModal }) {
             variant="outlined"
           >
             {/* Add your state options here */}
-            <MenuItem value="California">California</MenuItem>
-            <MenuItem value="Texas">Texas</MenuItem>
-            <MenuItem value="New York">New York</MenuItem>
+            <MenuItem value="Gujarat">Gujarat</MenuItem>
+            <MenuItem value="Delhi">Delhi</MenuItem>
+            <MenuItem value="Harayana">Haryana</MenuItem>
+            <MenuItem value="Rajasthan">Rajasthan</MenuItem>
           </TextField>
           <TextField
             fullWidth
@@ -85,10 +106,10 @@ function AddNewProperties({ openModal, setOpenModal }) {
             variant="outlined"
           >
             {/* Add your region options here */}
-            <MenuItem value="North">North</MenuItem>
-            <MenuItem value="South">South</MenuItem>
-            <MenuItem value="East">East</MenuItem>
-            <MenuItem value="West">West</MenuItem>
+            <MenuItem value="">None</MenuItem>
+            <MenuItem value="ahmedabad">Ahmedabad</MenuItem>
+            <MenuItem value="surat">Surat</MenuItem>
+            <MenuItem value="delhi">Delhi NCR</MenuItem>
           </TextField>
           <TextField
             fullWidth
@@ -100,12 +121,20 @@ function AddNewProperties({ openModal, setOpenModal }) {
             onChange={handleChange}
             variant="outlined"
           >
-            {/* Add your apartment type options here */}
-            <MenuItem value="Studio">Studio</MenuItem>
-            <MenuItem value="1 Bedroom">1 Bedroom</MenuItem>
-            <MenuItem value="2 Bedroom">2 Bedroom</MenuItem>
-            <MenuItem value="3 Bedroom">3 Bedroom</MenuItem>
+            <MenuItem value="room">Room</MenuItem>
+            <MenuItem value="flat">Flat</MenuItem>
+            <MenuItem value="house">House</MenuItem>
           </TextField>
+          <TextField
+            fullWidth
+            margin="normal"
+            label="Number Of Bedroom"
+            name="no_of_bedroom"
+            type="number"
+            value={formValues.no_of_bedroom}
+            onChange={handleChange}
+            variant="outlined"
+          />
           <TextField
             fullWidth
             margin="normal"
@@ -122,6 +151,16 @@ function AddNewProperties({ openModal, setOpenModal }) {
             name="price"
             type="number"
             value={formValues.price}
+            onChange={handleChange}
+            variant="outlined"
+          />
+          <TextField
+            fullWidth
+            margin="normal"
+            label="Discription"
+            name="description"
+            type="text"
+            value={formValues.description}
             onChange={handleChange}
             variant="outlined"
           />
