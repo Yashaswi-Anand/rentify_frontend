@@ -67,5 +67,40 @@ export const addNewProperties = async (payload) => {
     }
 }
 
+export const UpdateProperties = async (properties_id, payload) => {
+    try {
+        const response = await axios({
+            headers: {
+                "Content-Type": "application/json",
+            },
+            method: 'POST',
+            url: `${url}/properties/update_properties`,
+            params: {properties_id},
+            data: payload
+        })
+        return response
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const deleteProperties = async (properties_id) => {
+    try {
+        const response = await axios({
+            headers: {
+                "Content-Type": "application/json",
+            },
+            method: 'POST',
+            url: `${url}/properties/delete_properties`,
+            params: {properties_id}
+        })
+        return response
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
+
 
 
