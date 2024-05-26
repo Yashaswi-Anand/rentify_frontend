@@ -23,6 +23,7 @@ function UserSignIn({ openModal, setOpenModal }) {
     e.preventDefault();
     console.log('Email:', email);
     console.log('Password:', password);
+    localStorage.setItem('user_role', "buyer");
     clear();
   };
 
