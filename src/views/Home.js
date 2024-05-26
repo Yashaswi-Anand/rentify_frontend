@@ -3,46 +3,6 @@ import { Box, Grid, Card, Typography, MenuItem, Select, FormControl, InputLabel 
 import CardContentItem from '../widget/CardContentItem';
 import { getAllProperties } from '../utils/api';
 
-const items = [
-    { id: 1, title: 'Card 1', description: 'This is card number 1' },
-    { id: 2, title: 'Card 2', description: 'This is card number 2' },
-    { id: 2, title: 'Card 2', description: 'This is card number 2' },
-    { id: 2, title: 'Card 2', description: 'This is card number 2' },
-    { id: 2, title: 'Card 2', description: 'This is card number 2' },
-    { id: 2, title: 'Card 2', description: 'This is card number 2' },
-    { id: 2, title: 'Card 2', description: 'This is card number 2' },
-    { id: 2, title: 'Card 2', description: 'This is card number 2' },
-    { id: 2, title: 'Card 2', description: 'This is card number 2' },
-    { id: 2, title: 'Card 2', description: 'This is card number 2' },
-    { id: 2, title: 'Card 2', description: 'This is card number 2' },
-    { id: 2, title: 'Card 2', description: 'This is card number 2' },
-    { id: 2, title: 'Card 2', description: 'This is card number 2' },
-    { id: 2, title: 'Card 2', description: 'This is card number 2' },
-    { id: 2, title: 'Card 2', description: 'This is card number 2' },
-    { id: 2, title: 'Card 2', description: 'This is card number 2' },
-    { id: 2, title: 'Card 2', description: 'This is card number 2' },
-    { id: 2, title: 'Card 2', description: 'This is card number 2' },
-    { id: 2, title: 'Card 2', description: 'This is card number 2' },
-    { id: 2, title: 'Card 2', description: 'This is card number 2' },
-    { id: 2, title: 'Card 2', description: 'This is card number 2' },
-    { id: 2, title: 'Card 2', description: 'This is card number 2' },
-    { id: 2, title: 'Card 2', description: 'This is card number 2' },
-    { id: 2, title: 'Card 2', description: 'This is card number 2' },
-    { id: 2, title: 'Card 2', description: 'This is card number 2' },
-    { id: 2, title: 'Card 2', description: 'This is card number 2' },
-    { id: 2, title: 'Card 2', description: 'This is card number 2' },
-    { id: 2, title: 'Card 2', description: 'This is card number 2' },
-    { id: 2, title: 'Card 2', description: 'This is card number 2' },
-    { id: 2, title: 'Card 2', description: 'This is card number 2' },
-    { id: 2, title: 'Card 2', description: 'This is card number 2' },
-    { id: 2, title: 'Card 2', description: 'This is card number 2' },
-    { id: 2, title: 'Card 2', description: 'This is card number 2' },
-    { id: 2, title: 'Card 2', description: 'This is card number 2' },
-    { id: 2, title: 'Card 2', description: 'This is card number 2' },
-    { id: 2, title: 'Card 2', description: 'This is card number 2' },
-    // Add more cards as needed
-];
-
 const Home = () => {
     const [filter, setFilter] = useState('');
     const [properties, setProperties] = useState([]);
