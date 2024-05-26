@@ -7,16 +7,22 @@ import { FaHeart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa6";
 import { deleteProperties } from '../utils/api';
 import EditExitingProperties from '../views/EditExitingProperties';
+import UserSignIn from '../views/UserSignIn';
+import { errorMessage, successMessage } from '../Toast';
 
 function CardContentItem({ item }) {
     const navigate = useNavigate()
     const user_role = localStorage.getItem('user_role');
     const [is_edit_property, setIsEditProperty] = useState(false);
+    const [is_login_first, setIsLoginFirst] = useState(false);
 
     const onHandleShowDetails = () => {
-        navigate('/property_details', {
-            state: item
-        });
+        if (user_role) {
+            navigate('/property_details', {
+                state: item
+            });
+        }
+        setIsLoginFirst(true);
     }
 
     const onHandleCaptizedText = (text) => {
@@ -27,16 +33,21 @@ function CardContentItem({ item }) {
         try {
             const response = await deleteProperties(item.id);
             if (response.status === 200) {
+                successMessage("Property Deleted Successfully")
                 window.location.reload()
             }
         } catch (error) {
-            console.error();
+            errorMessage(error.response.data.message);
         }
     }
 
     return (
         <div>
-            <EditExitingProperties 
+            <UserSignIn
+                openModal={is_login_first}
+                setOpenModal={setIsLoginFirst}
+            />
+            <EditExitingProperties
                 item={item}
                 openModal={is_edit_property}
                 setOpenModal={setIsEditProperty}

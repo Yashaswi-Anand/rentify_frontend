@@ -14,7 +14,6 @@ function AppRoute() {
                     <ToastContainer />
                     <Routes>
                         <Route path="/" element={<Home />} />
-                        <Route path="/seller" element={<div>dvfv</div>} />
                         <Route path="/favorite" element={<div>vghvvhh</div>} />
                         <Route path="/property_details" element={<PropertiesDetails/>} />
                     </Routes>

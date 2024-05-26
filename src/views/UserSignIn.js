@@ -2,6 +2,7 @@ import { Box, Button, IconButton, Modal, TextField, Typography } from '@mui/mate
 import React, { useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import { userLogin } from '../utils/api';
+import { successMessage } from '../Toast';
 
 const style = {
   position: 'absolute',
@@ -31,8 +32,10 @@ function UserSignIn({ openModal, setOpenModal }) {
       if (user_response?.status === 200) {
         localStorage.setItem('user_role', user_response.data.data.role);
         localStorage.setItem('user_id', user_response.data.data.id);
+        successMessage('Login Successful');
       }
       handleClose()
+      window.location.reload();
     } catch (error) {
       console.error(error);
     }

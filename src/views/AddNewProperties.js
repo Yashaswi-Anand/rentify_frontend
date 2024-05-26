@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Box, Button, MenuItem, Modal, TextField, Typography, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { addNewProperties } from '../utils/api';
+import { errorMessage, successMessage } from '../Toast';
 
 const style = {
   position: 'absolute',
@@ -49,11 +50,12 @@ function AddNewProperties({ openModal, setOpenModal }) {
       }
       const response = await addNewProperties(payload)
       if (response.status === 200) {
-        handleClose();
+        handleClose();    
+        successMessage('Property Added Successfully');
         window.location.reload();
       }
     } catch (error) {
-      console.log(error);
+      errorMessage(error.response.data.message);
     }
   };
 

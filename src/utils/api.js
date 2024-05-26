@@ -59,7 +59,7 @@ export const addNewProperties = async (payload) => {
             },
             method: 'POST',
             url: `${url}/properties/add_properties`,
-            params: payload
+            data: payload
         })
         return response
     } catch (error) {

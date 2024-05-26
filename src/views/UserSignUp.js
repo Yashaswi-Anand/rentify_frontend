@@ -50,10 +50,6 @@ function UserSignUp({ openModal, setOpenModal }) {
     try {
       const response = await userRegister(payload);
       if (response.status === 200) {
-        const response = await userRegister(payload);
-        if (response.status === 200) {
-
-        }
         handleClose();
       }
     } catch (error) {
