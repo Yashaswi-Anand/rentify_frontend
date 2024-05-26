@@ -27,7 +27,7 @@ function CardContentItem({ item }) {
                 <div className='d-flex justify-between'>
                     <div className='d-flex'>
                         <div>
-                            <img src='https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500' height={100} width={120} style={{ borderRadius: 10 }} />
+                            <img src='https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500' height={100} width={120} style={{ borderRadius: 10 }} alt='no_image'/>
                         </div>
                         <div className='p-l-10'>
                             <p className='p-0 m-0'>Apartment: {onHandleCaptizedText(item.apartment)}</p>
