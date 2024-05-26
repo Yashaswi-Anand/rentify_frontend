@@ -2,6 +2,8 @@
   text-align: center;
 }
 
+::-webkit-scrollbar { width: 0px }
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -11,17 +13,6 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 .App-link {
@@ -36,3 +27,154 @@
     transform: rotate(360deg);
   }
 }
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background: linear-gradient(to bottom right, #33ccff 0%, #ebf8e1 50%, tan 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+}
+
+.logo_text {
+  color: darkblue;
+  font-size: 28px;
+  word-break: break-al;
+  font-weight: bold;
+  font-family: cursive;
+  font-style: italic;
+  padding: 0px 20px;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  padding: 0px 20px;
+}
+
+.auth-button {
+  background: none;
+  border: none;
+  color: darkblue;
+  font-weight: bold;
+  font-family: cursive;
+  font-style: italic;
+  font-size: 19px;
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.auth-button:hover {
+  text-decoration: underline;
+  color: green;
+}
+
+.user-profile-image {
+  width: 60px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.main-container {
+  background-color: lightgray;
+  margin-top: 70px;
+}
+
+.d-flex { display: flex; }
+.justify-center { justify-content: center;}
+.justify-around { justify-content: space-around;}
+.justify-between { justify-content: space-between;}
+.justify-start { justify-content: start;}
+.justify-end { justify-content: end;}
+.align-center { align-items: center; }
+.flex-direction-row { flex-direction: row;}
+.flex-direction-column { flex-direction: column;}
+.inline { display: inline; }
+.flex-wrap { flex-wrap: wrap !important;}
+.cursor { cursor: pointer !important;}
+
+/* Margin */
+.m-0 { margin: 0px !important;}
+.m-a-10 { margin: 10px !important; }
+.m-a-20 { margin: 20px !important; }
+.m-a-30 { margin: 30px !important; }
+.m-t-10 { margin-top: 10px !important; }
+.m-t-20 { margin-top: 20px !important; }
+.m-t-30 { margin-top: 30px !important; }
+.m-b-10 { margin-bottom: 10px !important; }
+.m-l-10 { margin-left: 10px !important;}
+.m-r-10 { margin-right: 10px !important;}
+.m-r-15 { margin-right: 15px !important;}
+.m-r-20 { margin-right: 20px !important;}
+.m-t-15 { margin-top: 15px !important; }
+.m-t-20 { margin-top: 20px !important; }
+.m-r-30 { margin-right: 30px !important;}
+.m-r-40 { margin-right: 40px !important;}
+.m-r-50 { margin-right: 50px !important;}
+
+/* Padding */
+.p-0 { padding: 0px !important; }
+.p-5 { padding: 5px; }
+.p-8 { padding: 8px; }
+.p-16 { padding: 16px !important; }
+.p-10 { padding: 10px !important; }
+.p-l-5 { padding: 5px; }
+.p-l-10 { padding-left: 10px; }
+.p-r-10 { padding-right: 10px; }
+.p-t-10 { padding-top: 10px; }
+.p-l-15 { padding-left: 15px; }
+.p-r-15 { padding-right: 15px; }
+.p-b-15 { padding-bottom: 15px; }
+.p-l-20 { padding-left: 20px; }
+.p-l-25 { padding-left: 25px; }
+.p-r-25 { padding-right: 25px; }
+.p-l-30 { padding-left: 30px; }
+.p-l-40 { padding-left: 40px; }
+.p-t-8 { padding-top: 8px !important;}
+.p-b-8 { padding-bottom: 8px !important;}
+.p-r-10 { padding-right: 10px !important;}
+.p-l-10 { padding-left: 10px !important;}
+
+/* Font size */
+.fs-12 { font-size: 12px; }
+.fs-13 { font-size: 13px; }
+.fs-16 { font-size: 16px; }
+.fs-20 { font-size: 20px; }
+.fs-22 { font-size: 22px !important; }
+.fs-25 { font-size: 25px; }
+.fs-30 { font-size: 30px;}
+
+/* Font weight */
+.fw-500 { font-weight: 500;}
+.fw-700 { font-weight: 700;}
+.fw-bold { font-weight: bold;}
+
+/* Color */
+.gray { color: gray !important; }
+.white { color: white !important; }
+.dark-blue { color: #2a2666 !important;}
+.red { color: red !important;}
+.black { color: black !important;}
+.light-gray { color: light-gray !important;}
+.aliceblue { color: aliceblue !important;}
+
+/* background */
+.bg-blue { background-color: #2a2666 !important; }
+.bg-white { background-color: white !important; }
+.bg-light-gray { background-color: lightgray !important; }
+
+/* gap */
+.g-3 { gap: 3px !important; }
+.g-5 { gap: 5px !important; }
