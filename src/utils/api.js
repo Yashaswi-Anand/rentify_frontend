@@ -1,6 +1,6 @@
 import axios from "axios";
-// const url = "https://rentify-dev.onrender.com/api";
-const url = "http://localhost:5000/api";
+const url = "https://rentify-dev.onrender.com/api";
+// const url = "http://localhost:5000/api";
 
 export const userRegister = async (payload) => {
     try {
