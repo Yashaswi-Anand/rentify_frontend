@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Typography, Card, CardContent, Grid, Box } from '@mui/material';
+import { Container, Typography, Card, CardContent, Grid } from '@mui/material';
 import { useLocation } from 'react-router-dom'
 import { getSellerDetails } from '../utils/api';
 
@@ -16,7 +16,7 @@ const PropertiesDetails = () => {
             }
 
         })()
-    }, [])
+    }, [apartment])
 
     return (
         <Container sx={{ p: 3 }}>

@@ -10,26 +10,16 @@ const Home = () => {
 
     useEffect(() => {
         (async () => {
-            await getAllPropertiesData()
-        })()
-    }, [])
-
-    useEffect(() => {
-        (async () => {
-            await getAllPropertiesData();
+            try {
+                const response = await getAllProperties(filterValues);
+                if (response.status === 200) {
+                    setProperties(response.data.data);
+                }
+            } catch (error) {
+                console.error(error);
+            }
         })()
     }, [filterValues])
-
-    const getAllPropertiesData = async () => {
-        try {
-            const response = await getAllProperties(filterValues);
-            if (response.status === 200) {
-                setProperties(response.data.data);
-            }
-        } catch (error) {
-            console.error(error);
-        }
-    }
 
 
     return (
