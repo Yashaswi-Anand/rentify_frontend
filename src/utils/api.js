@@ -100,6 +100,21 @@ export const deleteProperties = async (properties_id) => {
     }
 }
 
+export const getSellerDetails = async (seller_id) => {
+    try {
+        const response = await axios({
+            headers: {
+                "Content-Type": "application/json",
+            },
+            method: 'POST',
+            url: `${url}/auth/get_seller_details`,
+            params: {seller_id}
+        })
+        return response
+    } catch (error) {
+        console.error(error);
+    }
+}
 
 
 
